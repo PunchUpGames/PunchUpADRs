@@ -1,6 +1,6 @@
 # ADR-0015: The Three Virtues of a Programmer
 
-**Status:** Draft — flagged for discussion; not yet accepted
+**Status:** Accepted
 **Date:** 2026-07-14
 **Deciders:** Branden, Claude
 
@@ -81,6 +81,6 @@ The Virtues provide a common vocabulary for calls that would otherwise depend on
 
 ## See Also
 
-- [thethreevirtues.com](https://thethreevirtues.com/) — canonical source; verify verbatim text here before accepting this ADR
+- [thethreevirtues.com](https://thethreevirtues.com/) — canonical source for the verbatim text quoted above
 - Larry Wall, Tom Christiansen, Randal Schwartz, *Programming Perl*, 2nd Edition, O'Reilly & Associates, 1996 — original source
 - ADR-0002 — AI Collaboration Norms (the Virtues govern the work; this ADR governs the relationship)

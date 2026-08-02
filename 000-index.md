@@ -17,7 +17,7 @@ These establish who we are as contributors and how we work together. Read them b
 | [0001](0001-developer-tooling-is-a-personal-choice.md) | Developer Tooling is a Personal Choice | No tools are required or assumed — AI use is one valid approach among several |
 | [0002](0002-ai-collaboration-norms.md) | AI Collaboration Norms | How AI and human contributors work as peers, with the human as final authority |
 | [0003](0003-documentation-standards.md) | Documentation Standards | Where docs live, how they're shaped, and when AI may modify them |
-| [0015](0015-the-three-virtues.md) | The Three Virtues of a Programmer *(Draft)* | Laziness, Impatience, Hubris — Larry Wall's framework, with behavioral interpretation |
+| [0015](0015-the-three-virtues.md) | The Three Virtues of a Programmer | Laziness, Impatience, Hubris — Larry Wall's framework, with behavioral interpretation |
 
 ---
 
