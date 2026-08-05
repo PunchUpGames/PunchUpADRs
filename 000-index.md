@@ -20,6 +20,8 @@ Every ADR carries an **Applies to** tag (see ADR-0016) — `Always`, `Code files
 
 This same convention (tag + Validation section) applies to project-local ADR indexes, not just this studio one.
 
+**Disambiguation:** a consuming project may have its own ADR numbering (and, e.g., its own CI/CD ADR numbering) that overlaps with these numbers — they're separate namespaces. When referring to a Studio ADR by number outside this file, say "Studio ADR-000X" rather than just "ADR-000X."
+
 ---
 
 ## Values & Working Norms
