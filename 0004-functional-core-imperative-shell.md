@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (consolidates a long-standing project principle into an ADR)
 **Deciders:** Branden, Claude
+**Applies to:** Code files
 
 ## Context
 
@@ -87,8 +88,15 @@ This principle generates specific enforcement decisions, each recorded as its ow
 
 Further corollaries may accrete over time; each links back here rather than being absorbed.
 
+## Validation
+
+- For each new function/class in a diff, run the placement test from Decision: does it perform a side effect, hold state across calls, read ambient/non-deterministic input, or depend on the framework? Flag any "yes" answer sitting in a file the project treats as Core.
+- Grep new/changed Core-layer files for an import or reference to a Shell type, framework class, or I/O facility — that's a directional-arrow violation on sight, no deeper reading needed.
+- Example naming a language: in C#, a class under a `Core/` namespace referencing `UnityEngine.*` (or the project's equivalent engine namespace) from Core code is a direct violation to flag.
+
 ## See Also
 
 - ADR-0005 — No non-determinism in the Functional Core (corollary).
 - ADR-0006 — Parse external data at the Shell boundary (corollary).
 - Gary Bernhardt, *Boundaries* (2012) — the talk that named the "functional core, imperative shell" pattern.
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

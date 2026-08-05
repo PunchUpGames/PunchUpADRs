@@ -14,7 +14,7 @@ Only decisions that apply across every Punch Up Games project. Project-specific 
 
 - **Numbers are permanent.** Assigned once, never reused, never renumbered — a number identifies a decision for good.
 - **Grouping and reading order live in the index**, not in the filenames.
-- **Each ADR opens with its status, date, and deciders**, followed by Context, Decision, Reasons, and Consequences.
+- **Each ADR opens with its status, date, deciders, and an `Applies to` tag**, followed by Context, Decision, Reasons, Consequences, a `## Validation` section, and See Also. See ADR-0016 for what the tag and Validation section mean and how a reader is expected to use them — the index applies the same convention at a glance, without opening every body.
 
 ## License
 

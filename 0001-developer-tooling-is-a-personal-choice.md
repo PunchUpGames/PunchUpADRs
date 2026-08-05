@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22
 **Deciders:** Branden
+**Applies to:** Always
 
 ## Context
 
@@ -56,7 +57,15 @@ Do not assume AI-generated content. Do not ask contributors to disclose whether 
 
 New tooling decisions should state explicitly whether they create project-wide requirements or per-contributor defaults. Ambiguity recreates the problem this ADR was written to prevent.
 
+## Validation
+
+No reliable diff-level or transcript-level validation is available for this ADR. It governs how people talk about tooling choices — not a property of a diff or a plan. Compliance is a matter of conduct, checkable only by judgment:
+
+- In a PR description, commit message, or review comment: does the language imply a tooling choice was required or expected ("should have used AI for this," "why wasn't this AI-assisted") rather than just describing what was done?
+- In onboarding docs or a project's CLAUDE.md-equivalent: does it read as "AI assistance is available and optional," or does it read as an assumed default?
+
 ## See Also
 
 - ADR-0002 — collaboration norms for AI-using contributors.
 - ADR-0013 — AI permissions; operational scope of AI-assisted workflows.
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (adapted for general use)
 **Deciders:** Branden, Claude
+**Applies to:** Code files, Test files
 
 ## Context
 
@@ -56,8 +57,15 @@ A bug fix begins by writing a test that reproduces the bug against the current (
 
 How the test corpus *evolves* over time — and why tests are almost never modified once written — is its own decision: see ADR-0011 (Tests Are Append-Only).
 
+## Validation
+
+- Check that a new Core-layer function shipped with tests, and that no new unit test exists purely to stand up Shell plumbing with mocks.
+- For a bug-fix diff: is there a test that reproduces the bug? This one can't be verified from the diff alone — check the session transcript or commit history for the test failing against pre-fix code before the fix landed.
+- Ask directly rather than inferring: "was this test observed failing before the implementation existed?" If a test and its implementation appear in the same step with no failing run in between, treat it as unverified, not compliant.
+
 ## See Also
 
 - Kent Beck, *Test-Driven Development by Example* — the canonical practice this ADR adopts and defers to.
 - ADR-0004 — Functional Core / Imperative Shell (the scope rule is a direct corollary).
 - ADR-0011 — Tests Are Append-Only (how the test corpus grows without churning).
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (adapted for general use)
 **Deciders:** Branden, Claude
+**Applies to:** Code files
 
 ## Context
 
@@ -48,7 +49,14 @@ So: L is the fallback exactly where this ADR's main rule does not reach.
 
 This ADR modifies ADR-0007: it narrows **L** to the framework-forced carve-out and strengthens **I** and **D** into defaults. S and O are unaffected. The canonical statement of each letter lives in ADR-0007; this ADR holds the override.
 
+## Validation
+
+- Grep a diff for a new class declaration that extends a project-authored (non-framework) base class — that's the forbidden pattern outright, no further reading needed.
+- For a new subclass of a framework type (the tolerated case): is it thin — does it mostly delegate to composed/interface-based code rather than holding its own behavior?
+- Example naming a language: in C#, `class Goblin : MonoBehaviour` is the tolerated framework-forced case; `class Goblin : BaseUnit` where `BaseUnit` is project-authored is the forbidden case — flag it and ask whether `BaseUnit`'s shared behavior could be a function or interface instead.
+
 ## See Also
 
 - ADR-0007 — SOLID as baseline design discipline (the principles this ADR narrows/strengthens; L's freestanding definition lives there).
 - ADR-0004 — Functional Core / Imperative Shell (shared behavior preferentially lives as pure functions in the Core).
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

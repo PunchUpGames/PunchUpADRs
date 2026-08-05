@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (adapted for general use)
 **Deciders:** Branden, Claude
+**Applies to:** Code files
 
 ## Context
 
@@ -41,8 +42,19 @@ S, O, and I apply as written, with no project-specific override.
 - Design discussions may reference letters as shorthand; "fix the SRP violation" is an actionable instruction.
 - When a new ADR strengthens, narrows, or overrides a SOLID letter, it cites this ADR (delta → base), and a one-line "narrowed/realized by ADR-N" pointer is added here (base → delta). The authoritative statement lives in the delta; this ADR only indexes it.
 
+## Validation
+
+No single check covers all five letters; SOLID stays a judgment call even where the deltas below are mechanical. Probes worth asking per letter on a new class/module:
+
+- **S:** does describing its responsibility need "and"? That's the split signal.
+- **O:** does adding a new case require editing an existing conditional/switch, or does it add a new implementation behind an existing abstraction?
+- **I:** does a new interface method force an implementer that doesn't need it to add a no-op or throw-not-implemented stub?
+
+For **L** and **D**, check the delta ADRs first rather than re-deriving here — see below.
+
 ## See Also
 
-- ADR-0008 — No Voluntary Inheritance (narrows L; strengthens I and D).
-- ADR-0004 — Functional Core / Imperative Shell (realizes D as the one-way dependency arrow).
+- ADR-0008 — No Voluntary Inheritance (narrows L; strengthens I and D — has L's concrete validation checks).
+- ADR-0004 — Functional Core / Imperative Shell (realizes D as the one-way dependency arrow — has D's concrete validation checks).
 - Robert C. Martin, *Agile Software Development: Principles, Patterns, and Practices* — origin of the SOLID grouping; the canonical depth this ADR defers to.
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

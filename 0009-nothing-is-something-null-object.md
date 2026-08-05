@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (adapted for general use)
 **Deciders:** Branden, Claude
+**Applies to:** Code files
 
 ## Context
 
@@ -65,9 +66,16 @@ The test: if the "nothing" represents *"this legitimately isn't here, and doing 
 - No Null Object that fails substitutability — if callers must special-case it, it isn't one.
 - No using a Null Object to swallow a genuine error; reject invalid states at the boundary (ADR-0006) and fail honestly (ADR-0001).
 
+## Validation
+
+- For every new absence-check in a diff (a language's equivalent of `if x == null` / `if not x` / `if x is None`), classify it: is this legitimate absence with a correct default (→ should be modeled as a Null Object or empty/identity value) or an error state (→ should fail per ADR-0006, not be silently absorbed)?
+- Example, naming a language explicitly since this check is syntax-shaped: in Python, `if value is None: return default` repeated across several call sites of the same function is the smell this ADR targets — check whether `value` could instead default to an empty/identity object once, at its source, so the `is None` checks disappear from the callers entirely.
+- For any object introduced specifically to represent "nothing": does it implement every method callers rely on for the "something" case? If a caller still special-cases the null object for even one message, substitutability has failed and the branch is still there in a different shape.
+
 ## See Also
 
 - Sandi Metz, *Nothing Is Something*, RailsConf 2015 — <https://www.youtube.com/watch?v=29MAL8pJImQ>.
 - ADR-0004 — Functional Core / Imperative Shell (the null case is an immutable Core value or a Shell object).
 - ADR-0006 — Parse external data at the Shell boundary (governs invalid states; this ADR governs valid-but-empty ones; the two cooperate at the boundary).
 - ADR-0007 — SOLID baseline (Liskov Substitution is what makes a Null Object safe).
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

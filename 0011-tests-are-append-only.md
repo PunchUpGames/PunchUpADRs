@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (adapted for general use)
 **Deciders:** Branden, Claude
+**Applies to:** Test files
 
 ## Context
 
@@ -57,9 +58,16 @@ A test *is* edited only when:
 - No relaxing or rewriting an assertion to make a changed implementation pass.
 - No silent mutation of a test to track a requirement change — retire-and-replace instead.
 
+## Validation
+
+- Diff any modified test file: is an existing `test_*` (or language-equivalent test function) body changed, weakened, or removed, rather than a new one added? That's presumptively a violation unless the commit or PR explicitly states either "this test was wrong" or "this requirement was retired" (the two named exceptions).
+- Watch for the smell named in Context directly: a commit message or session transcript containing "had to update these tests to match" is close to a direct admission of the forbidden pattern — check whether an additively-composed new function would have let the original tests keep passing untouched.
+- Example, naming a language explicitly: in GDScript or C#, a signature change to an existing function that forces edits across many of its existing test cases is the trigger to stop and ask whether a new function (old delegates to new, or new wraps old with fixed arguments) avoids the rewrite.
+
 ## See Also
 
 - ADR-0010 — TDD discipline (how a test is born; this ADR governs how the corpus evolves afterward).
 - ADR-0007 — SOLID baseline (this is the Open/Closed principle applied to functions and their tests).
 - ADR-0008 — No Voluntary Inheritance (composition is what makes new-function-over-edit cheap).
 - ADR-0004 — Functional Core / Imperative Shell (immutable values + pure functions make tests stable in the first place).
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

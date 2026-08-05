@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (adapted for general use)
 **Deciders:** Branden, Claude
+**Applies to:** Code files
 
 ## Context
 
@@ -55,8 +56,15 @@ When a listener needs a *new* piece of state, add it to the payload the existing
 
 If the system ever needed *generic, reusable listeners that don't know what they're bound to* (e.g. a widget that renders any two numbers as a percentage across unrelated systems), a keyed-subscription mechanism would be the tool. That is a different problem; for a system with clear write authorities, direct event firing is simpler and cheaper.
 
+## Validation
+
+- Grep a diff for a new wrapper type whose only job is tracking whether a plain value changed (an `Observable<T>`-style box, a bespoke "dirty" flag) — that's the change-detection pattern this ADR replaces.
+- For a new piece of state a listener needs: did it land on an existing event's payload, or did a new parallel event/channel get created for it? The latter is the smell named in Decision.
+- Example naming a language: in GDScript, a new `signal` fired on the line immediately after the write it describes is compliant; a `_process()` loop that polls a field and fires a signal when it differs from the previous frame is not.
+
 ## See Also
 
 - ADR-0004 — Functional Core / Imperative Shell (the Core produces values; this ADR is how the Shell routes them to listeners).
 - ADR-0007 — SOLID baseline (single write authority is Single Responsibility applied to state ownership).
 - ADR-0009 — Nothing Is Something (listeners filter payload-borne state without branching).
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

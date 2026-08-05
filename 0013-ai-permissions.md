@@ -5,6 +5,7 @@
 **Deciders:** Branden, Claude
 
 **Scope:** This ADR applies to contributors using agentic AI coding tools. See ADR-0001.
+**Applies to:** Always
 
 ## Context
 
@@ -104,9 +105,16 @@ The settings file should match the structure of the harness's official settings.
 - A starter settings file is checked into the contributor's personal setup (see the settings file authored alongside this ADR).
 - A future ADR may codify "what makes something skill-worthy" if the threshold proves contentious in practice.
 
+## Validation
+
+- Check a session transcript for any publish-to-shared-history operation (language/tool-agnostic examples: `git push`, `p4 submit`) and confirm each was preceded by an explicit human approval *in that session* — not inferred from an earlier, unrelated approval.
+- Check for "jazz": did the agent compose an ad-hoc multi-step shell pipeline for search-or-read work when a dedicated tool was available? Concretely, in a Claude Code session with Grep/Glob/Read tools available, a `grep`/`find`/`cat` Bash invocation for that purpose is exactly the pattern this ADR asks to be denied by tooling, not just discouraged by habit.
+- At plan time: does the plan name any operation that will need a permission not currently granted, and propose it before execution starts — or does the first mention of it show up as a mid-execution prompt (the "anticipate-and-ask" failure this ADR calls out)?
+
 ## See Also
 
 - ADR-0002 — collaboration norms; this ADR is the operational expression of "the human is final authority, the AI proposes."
 - ADR-0003 — documentation standards.
 - The project's rule file (e.g. `CLAUDE.md`) — operational rules; this ADR formalizes the permission-related ones.
 - The contributor-local settings file (not committed) — the implementation file.
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

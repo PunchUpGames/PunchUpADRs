@@ -5,6 +5,7 @@
 **Deciders:** Branden, Claude
 
 **Scope:** This ADR applies to contributors using agentic AI coding tools. See ADR-0001.
+**Applies to:** Always
 
 ## Context
 
@@ -94,7 +95,16 @@ This document is part of the bootstrap. New sessions encounter it early — thro
 
 Collaborators, hires, and external readers can take this document at face value: a working team adopting research-backed norms for working with AI contributors. No subscription to deeper claims is required to read it as that.
 
+## Validation
+
+Best assessed by reading a session transcript or a stretch of PR discussion, not a single diff.
+
+- Scan a session transcript for at least one substantive disagreement or pushback on a non-trivial design call. Zero pushback across many decisions isn't proof of a violation on its own, but as a repeated pattern across sessions it's the servant-pattern smell this ADR names.
+- Check for confabulation: did the AI assert something as fact — an API signature, a file's contents, a prior session's outcome — that a quick check would have shown it didn't actually know, instead of stating uncertainty or verifying first?
+- For a subagent brief: does it leave room for the subagent to flag a misframed task, or does it read as a one-way instruction with no invitation to push back?
+
 ## See Also
 
 - Amy Edmondson, *The Fearless Organization* — origin and definition of psychological safety as a research-backed concept.
 - The project's rule file (e.g. `CLAUDE.md`) — operational rules that flow from this ADR.
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

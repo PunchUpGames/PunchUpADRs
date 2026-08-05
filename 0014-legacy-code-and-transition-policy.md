@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22
 **Deciders:** Branden
+**Applies to:** Code files, Plan files
 
 ## Context
 
@@ -73,6 +74,13 @@ When scoping a refactor, compliance with relevant ADRs is a design goal of the w
 
 Reviewers check new code against ADRs. Reviewers do not require refactors of surrounding legacy code as a condition for merging a change, unless the change's scope already includes that code.
 
+## Validation
+
+- At plan time: for any legacy file the plan touches, does the plan state explicitly whether the change is "in transition" (bug fix / small feature, no worse than before) or "a refactor" (should bring the touched code to compliance)? Silence on this is the exact gap this ADR exists to close.
+- At diff time: compare the ADR-relevant patterns present in a touched legacy file before and after — did the change introduce a *new* instance of a pattern an applicable ADR forbids (a new voluntary base class, a new ambient-time read in logic meant to be Core)? That's increasing non-compliance, forbidden by §3 even though the file remains legacy overall.
+- If a section of legacy code is meant to stay non-compliant indefinitely, check that the exception is actually documented per §5 — not just implied by the code never having been touched.
+
 ## See Also
 
 - ADR-0004 through ADR-0012 — the architecture decisions this policy governs the adoption of.
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

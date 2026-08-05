@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (adapted for general use)
 **Deciders:** Branden, Claude
+**Applies to:** Code files
 
 ## Context
 
@@ -47,8 +48,15 @@ This is the "**parse, don't validate**" discipline: turn untrusted input into a 
 - The parse-and-harden step is Shell code and is tested at the boundary: valid input → correct hardened type; malformed input → rejected/normalized as specified.
 - Core functions are tested against hardened types directly, with no malformed-input cases (those can't reach them by construction).
 
+## Validation
+
+- Trace a new external-data path (config load, API response, save-file deserialize) end to end: is there exactly one parse-and-harden step, and does every Core-layer function on that path receive only the hardened type it produces?
+- Grep Core-layer files for a type name matching the project's serialization/DTO/asset types (a JSON row type, an ORM model, a scene/resource class) — presence there means raw external data reached the Core.
+- Example naming a language: in Python, a Core function accepting a raw `dict` fresh from `json.load()` instead of a typed/validated dataclass is the pattern this ADR forbids.
+
 ## See Also
 
 - ADR-0004 — Functional Core / Imperative Shell (the parent principle this enforces).
 - ADR-0005 — No non-determinism in the Functional Core (sibling corollary).
 - Alexis King, *Parse, Don't Validate* (2019) — the essay that named the boundary-parsing discipline.
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

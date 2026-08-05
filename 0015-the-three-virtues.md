@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-07-14
 **Deciders:** Branden, Claude
+**Applies to:** Always
 
 ## Context
 
@@ -79,8 +80,17 @@ The Virtues provide a common vocabulary for calls that would otherwise depend on
 - "Are we being impatient enough — is this waiting for the user to know something it should anticipate?"
 - "Would we be proud to have this read by someone skilled?"
 
+## Validation
+
+No mechanical check applies — this is a values framework, not a rule. Judgment prompts to ask of a design choice or review:
+
+- **Laziness:** was "which option is lazier over time" asked explicitly, or did the change optimize for today's effort while creating foreseeable future work?
+- **Impatience:** on the third near-identical occurrence of a pattern, was it collapsed into a shared abstraction, or copied again?
+- **Hubris:** for anything called "temporary" or "quick fix," does the commit/PR text itself flag it as a known placeholder with a reason — or does it read as finished work the author would be uncomfortable having a skilled peer review closely?
+
 ## See Also
 
 - [thethreevirtues.com](https://thethreevirtues.com/) — canonical source for the verbatim text quoted above
 - Larry Wall, Tom Christiansen, Randal Schwartz, *Programming Perl*, 2nd Edition, O'Reilly & Associates, 1996 — original source
 - ADR-0002 — AI Collaboration Norms (the Virtues govern the work; this ADR governs the relationship)
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).

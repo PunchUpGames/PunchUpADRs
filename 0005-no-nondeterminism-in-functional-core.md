@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-06-22 (adapted for general use)
 **Deciders:** Branden, Claude
+**Applies to:** Code files
 
 ## Context
 
@@ -46,7 +47,14 @@ When a Core computation needs such a value, **the Shell reads it and passes it i
 
 - Core functions that consume randomness or time are tested with fixed, supplied values and exact assertions — never with statistical tolerances.
 
+## Validation
+
+- Grep new/changed Core-layer files for a call to a random-number source, a wall-clock/time read, or an auto-advancing counter.
+- Example naming a language: in GDScript, `randi()`, `randf()`, or `Time.get_ticks_msec()` appearing inside a Core-layer file is a violation; the same call sitting in the Shell, with the result passed into the Core function as an argument, is compliant.
+- For any Core function newly given a "seed" or "timestamp" parameter: confirm the value is supplied by the caller (Shell), not generated internally by the function itself.
+
 ## See Also
 
 - ADR-0004 — Functional Core / Imperative Shell (the parent principle this enforces).
 - ADR-0006 — Parse external data at the Shell boundary (sibling corollary; both keep the Core a pure function of explicit inputs).
+- ADR-0016 — ADR authoring conventions (defines the `Applies to:` tag and `## Validation` section used here).
