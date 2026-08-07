@@ -1,10 +1,10 @@
 # Punch Up Games — Studio ADRs
 
-Studio-wide Architecture Decision Records for Punch Up Games. These capture how we work, what we build on, and how we design — independent of any specific game, engine, or project.
+Studio-wide Architecture Decision Records for Punch Up Games. These capture how we work, what we build on, and how we design. It is independent of any specific game, engine, or project.
 
 **Start here: [000-index.md](000-index.md).** The index is the entry point. It carries the reading order, groups the ADRs by theme, and gives a one-line summary of each. Filenames are not the reading order.
 
-If you're new, the index's *Values & Working Norms* cluster comes first — those set the context for everything else.
+If you're new, the index's *Values & Working Norms* cluster comes first: those set the context for everything else.
 
 ## What lives here
 
