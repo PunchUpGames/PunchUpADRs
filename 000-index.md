@@ -20,7 +20,17 @@ Every ADR carries an **Applies to** tag (see ADR-0016) — `Always`, `Code files
 
 This same convention (tag + Validation section) applies to project-local ADR indexes, not just this studio one.
 
-**Disambiguation:** a consuming project may have its own ADR numbering (and, e.g., its own CI/CD ADR numbering) that overlaps with these numbers — they're separate namespaces. When referring to a Studio ADR by number outside this file, say "Studio ADR-000X" rather than just "ADR-000X."
+**Disambiguation:** every repository that holds ADRs numbers them independently (see ADR-0017) — a consuming project's own ADRs, and shared repositories like the CI/CD corpus, overlap with these numbers. When referring to a Studio ADR by number outside this file, say "Studio ADR-000X" rather than just "ADR-000X." The same rule applies in the other direction: always qualify with the namespace name from the registry below.
+
+### Namespace registry
+
+One name per repository, never reused (ADR-0017). Add a row when a repository starts holding ADRs.
+
+| Name | Repository | Holds |
+|---|---|---|
+| `Studio` | `PunchUpADRs` | Decisions that apply to every Punch Up Games project (this corpus) |
+| `CICD` | `cicd-shared` | The shared CI/CD pipeline: build infrastructure, identity and access, guardrails |
+| `DTD` | `DigTooDeep` | Dig Too Deep's own decisions (referred to locally as "Project ADR") |
 
 ---
 
@@ -35,6 +45,7 @@ These establish who we are as contributors and how we work together. Read them b
 | [0003](0003-documentation-standards.md) | Documentation Standards | Documentation | Where docs live, how they're shaped, and when AI may modify them |
 | [0015](0015-the-three-virtues.md) | The Three Virtues of a Programmer | Always | Laziness, Impatience, Hubris — Larry Wall's framework, with behavioral interpretation |
 | [0016](0016-adr-authoring-conventions.md) | ADR Authoring Conventions | Documentation | Defines the `Applies to` tag and `## Validation` section used throughout this index |
+| [0017](0017-one-adr-namespace-per-repository.md) | One ADR Namespace per Repository | Documentation, Plan files | Each repo numbers its own ADRs under a registered short name; cross-repo references always carry the name; mounting repos load the mounted index |
 
 ---
 
