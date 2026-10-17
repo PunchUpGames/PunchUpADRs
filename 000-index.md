@@ -31,6 +31,7 @@ One name per repository, never reused (ADR-0017). Add a row when a repository st
 | `Studio` | `PunchUpADRs` | Decisions that apply to every Punch Up Games project (this corpus) |
 | `CICD` | `cicd-shared` | The shared CI/CD pipeline: build infrastructure, identity and access, guardrails |
 | `DTD` | `DigTooDeep` | Dig Too Deep's own decisions (referred to locally as "Project ADR") |
+| `IND` | `Goblindustry` | Goblindustry's own decisions (referred to locally as "Project ADR") |
 
 ---
 
