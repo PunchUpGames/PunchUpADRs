@@ -7,9 +7,9 @@
 
 ## Context
 
-Punch Up Games already runs several ADR corpora whose numbers overlap: this Studio corpus, each project's own, and the CI/CD corpus. The index already asks readers to say "Studio ADR-000X" rather than a bare number. That works while there are three corpora. It stops working as shared repositories get mounted into more than one project, because a bare "ADR-0004" then has several plausible owners.
+Punch Up Games already runs several ADR corpora whose numbers overlap: this Studio corpus, each project's own, and shared infrastructure corpora. The index already asks readers to say "Studio ADR-000X" rather than a bare number. That works while there are only a few corpora. It stops working as shared repositories get mounted into more than one project, because a bare "ADR-0004" then has several plausible owners.
 
-One corpus (CI/CD) began life as a folder inside a single game's repository and is being extracted into its own repository so that several projects can share it. Whatever rule we adopt has to make that move cost nothing: its ADR numbers must survive the extraction.
+One shared corpus began life as a folder inside a single project's repository and is being extracted into its own repository so that several projects can share it. Whatever rule we adopt has to make that move cost nothing: its ADR numbers must survive the extraction.
 
 ## Decision
 
@@ -19,11 +19,17 @@ Each repository that holds ADRs numbers them independently of every other reposi
 
 ### 2. Each namespace has a short registered name
 
-A repository's ADR index declares one short name, unique across the studio. Names are registered in the table in the Studio index, so a new repository can see which are taken. `Studio` is this repository. A project repository picks a short name for itself (e.g. `DTD`); it may say "Project ADR-000X" only inside its own documents, where the meaning is unambiguous.
+A repository's ADR index declares one short name, unique across the adopting organisation. `Studio` is this repository, and is the only namespace this corpus names.
+
+Each adopting organisation keeps a namespace registry outside this corpus, private if its project names are. This corpus never names a project. A repository's rule file (`CLAUDE.md` or equivalent) states where the registry is, unless the adoption note below covers it.
+
+*Punch Up Games adoption note:* the registry is `https://github.com/PunchUpGames/studio-private-registry` (private). Other organisations: supply your own; this URL will not resolve for you.
+
+A new repository's initial short name is chosen by a human and recorded in the registry before it is used. A project repository may say "Project ADR-000X" only inside its own documents, where the meaning is unambiguous.
 
 ### 3. Cross-repository references always carry the name
 
-Outside the owning repository's own index, write `<Name> ADR-<number>`: "Studio ADR-0016", "CICD ADR-0004". Never a bare number.
+Outside the owning repository's own index, write `<Name> ADR-<number>`: "Studio ADR-0016", "Example ADR-0004". Never a bare number.
 
 ### 4. A repository that mounts another loads its index
 
@@ -50,19 +56,23 @@ When an ADR in one namespace supersedes one in another, the newer ADR cites the 
 
 ### Must do
 
-- Declare a short name in each repository's ADR index and add it to the registry in the Studio index.
+- Declare a short name in each repository's ADR index and add it to the organisation's namespace registry (Decision §2).
 - Use `<Name> ADR-<number>` in every cross-repository reference.
 - List each mounted ADR index in the mounting repository's rule file.
 
 ### Must not do
 
 - Don't reuse a registered name for a different repository.
+- Don't name a project, or copy registry contents, into this corpus.
+- Don't invent a namespace. If the registry can't be reached, stop and ask a human.
 - Don't renumber an ADR when its corpus moves between repositories.
 - Don't open a per-folder namespace except under the extraction exception in Decision §5.
 
 ## Validation
 
-- Check any new ADR index: does it declare a short name, and is that name in the Studio registry and unused by another repository?
+- A repository's rule file (`CLAUDE.md` or equivalent) states where the registry is, unless the adoption note in Decision §2 covers it. If the registry is unreachable, stop and ask a human rather than guessing.
+- Check any new ADR index: does it declare a short name, and is that name in the organisation's registry and unused by another repository?
+- Grep this corpus for project names or registry rows. Only `Studio` and placeholder names like `Example` should appear.
 - Grep documents outside an ADR's own repository for a bare `ADR-` followed by digits with no name in front of it. In a Markdown repo: `grep -rnE '(^|[^A-Za-z-])ADR-[0-9]{4}' docs/` and inspect each hit that is not inside the owning corpus.
 - For a repository that mounts another's ADRs (e.g. a `.gitmodules` entry pointing at an ADR corpus): does its rule file list that index?
 - For any extraction of a folder into its own repository: do the ADR numbers before and after match one-to-one?
@@ -71,4 +81,4 @@ When an ADR in one namespace supersedes one in another, the newer ADR cites the 
 
 - ADR-0016 — ADR authoring conventions (the `Applies to` tag this ADR relies on for scoping inside a repository).
 - ADR-0003 — Documentation standards (locality: an ADR lives with what it governs).
-- The Studio index (`000-index.md`) — holds the namespace registry.
+- The Studio index (`000-index.md`) — points to where the namespace registry lives.

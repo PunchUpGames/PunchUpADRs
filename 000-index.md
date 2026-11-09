@@ -17,21 +17,19 @@ Every ADR carries an **Applies to** tag (see ADR-0016) — `Always`, `Code files
 3. **An ADR with no tag yet (`—` below) has not been through the ADR-0016 pass. Treat it as `Always` until it's tagged** — an untagged ADR is unclassified, not exempt. Don't silently skip it.
 4. **At planning time, when the task's file categories aren't fully known yet, err toward reading the full body.** A body is 50–100 lines; a wrong architectural call downstream costs far more.
 5. **Each ADR's `## Validation` section is what to consult during implementation and review** — it gives concrete example checks so compliance doesn't have to be re-derived from the principle every time.
+6. **ADR namespaces other than `Studio` live in your organisation's private registry, not here** (ADR-0017 §2). The repository's rule file (`CLAUDE.md` or equivalent) states where it is; Punch Up Games uses `https://github.com/PunchUpGames/studio-private-registry`. If you can't find or reach it, ask a human — never guess a namespace or write project names into this corpus.
 
 This same convention (tag + Validation section) applies to project-local ADR indexes, not just this studio one.
 
-**Disambiguation:** every repository that holds ADRs numbers them independently (see ADR-0017) — a consuming project's own ADRs, and shared repositories like the CI/CD corpus, overlap with these numbers. When referring to a Studio ADR by number outside this file, say "Studio ADR-000X" rather than just "ADR-000X." The same rule applies in the other direction: always qualify with the namespace name from the registry below.
+**Disambiguation:** every repository that holds ADRs numbers them independently (see ADR-0017) — a consuming project's own ADRs, and shared repositories, overlap with these numbers. When referring to a Studio ADR by number outside this file, say "Studio ADR-000X" rather than just "ADR-000X." The same rule applies in the other direction: always qualify with the namespace name from the registry.
 
 ### Namespace registry
 
-One name per repository, never reused (ADR-0017). Add a row when a repository starts holding ADRs.
+One name per repository, never reused (ADR-0017). This corpus lists only itself; every other namespace is recorded in the adopting organisation's own registry (see item 6 above).
 
 | Name | Repository | Holds |
 |---|---|---|
 | `Studio` | `PunchUpADRs` | Decisions that apply to every Punch Up Games project (this corpus) |
-| `CICD` | `cicd-shared` | The shared CI/CD pipeline: build infrastructure, identity and access, guardrails |
-| `DTD` | `DigTooDeep` | Dig Too Deep's own decisions (referred to locally as "Project ADR") |
-| `IND` | `Goblindustry` | Goblindustry's own decisions (referred to locally as "Project ADR") |
 
 ---
 
